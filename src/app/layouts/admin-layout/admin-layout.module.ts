@@ -12,7 +12,6 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { ChartsModule } from 'ng2-charts';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
-import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { StudentsComponent } from '../../students/students.component';
 import { SchoolsComponent } from '../../schools/schools.component';
 import { CompaniesComponent } from '../../companies/companies.component';
@@ -31,7 +30,6 @@ import { LoginComponent } from '../../login/login.component';
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,
-    UpgradeComponent,
     TypographyComponent,
     IconsComponent,
     NotificationsComponent,
