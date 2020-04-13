@@ -1,0 +1,166 @@
+<div class="breadcrumb">
+    <h1>Customer's Profile</h1>
+    <ul>
+        <li><a href="">Pages</a></li>
+        <li>User Profile</li>
+    </ul>
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+<div class="card user-profile o-hidden mb-4">
+    <div class="card-body">
+        <div class="row d-flex align-items-center">
+            <i class="i-Lock-User m-1 text-32"></i>
+            <div class="col">
+                <h4>{{user.name}} | <small>{{user.email}}</small></h4>
+                <small>Created/Updated on
+                    {{user.created_at ? helper.formatDateTime(user.created_at) : helper.formatDateTime(user.updated_at)}}</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card user-profile o-hidden mb-4">
+    <div class="card-header">
+        <h4>Account Details</h4>
+    </div>
+    <div class="card-body center" *ngIf="account_loading">
+        <div class="spinner-bubble spinner-bubble-secondary m-5"></div>
+    </div>
+    <div class="card-body" *ngIf="!account_loading">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="mb-3">Account Information</h5>
+                <div class="row">
+                    <div class="col-4" style="white-space: nowrap; overflow: hidden;">
+                        <p>ID</p>
+                        <p>Name</p>
+                        <p>Email</p>
+                        <p>Ip Address</p>
+                        <p>API Key</p>
+                    </div>
+                    <div class="col-8" style="white-space: nowrap; overflow: hidden;">
+                        <p>{{user.id}}</p>
+                        <p>{{user.name}}</p>
+                        <p>{{user.email}}</p>
+                        <p>{{user.ip_address}}</p>
+                        <p>
+                            <span *ngIf="!showAPI">************************ <i class="i-Eye text-18"
+                                    (click)="showAPI = true"></i></span>
+                            <span *ngIf="showAPI">{{user.api_key}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="mb-3">Billing Information</h5>
+                <div class="row">
+                    <div class="col-4" style="white-space: nowrap; overflow: hidden;">
+                        <p>Account Plan</p>
+                        <p>Stripe Id</p>
+                        <p>Card Type</p>
+                        <p>Card</p>
+                    </div>
+                    <div class="col-8" style="overflow: hidden; white-space: nowrap;">
+                        <p>{{user.plan_id}} plan {{user.plan_is_active? '✅' : '❌'}}</p>
+                        <p>{{user.stripe_id}}</p>
+                        <p>{{user.card_brand}}</p>
+                        <p *ngIf="user.card_last_four">**** **** **** {{user.card_last_four}}</p>
+                        <p *ngIf="!user.card_last_four" class="text-danger">Card not on file.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4" *ngIf="cache">
+            <div class="col">
+                <h5 class="mb-3">Quota Information</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-4">
+                                <p>Quota Limit</p>
+                                <p>Quota Used</p>
+                                <p>Quota Remaining</p>
+                            </div>
+                            <div class="col-8">
+                                <p>{{cache.quota_limit}}</p>
+                                <p>{{cache.quota_used}}</p>
+                                <p>{{cache.quota_remaining}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card user-profile o-hidden mb-4">
+    <div class="card-header">
+        <h4>Invoices</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped table-borderless">
+            <thead>
+                <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Detail</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let invoice of invoices">
+                    <th scope="row">{{helper.formatPrice(invoice.amount_paid, 'USD')}}</th>
+                    <td>Invoice # {{invoice.number}}</td>
+                    <td>{{helper.timestampToDateTime(invoice.date)}}</td>
+                    <td>
+                        <span *ngIf="invoice.status == 'paid'" class="badge badge-pill badge-success">Paid √</span>
+                        <span *ngIf="invoice.status != 'paid'" class="badge badge-pill badge-danger">Failed X</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card card-hvr user-profile o-hidden mb-4" (click)="generateAPIKey()">
+            <div class="card-body">
+                <div class="row d-flex align-items-center">
+                    <i class="i-Key m-1 text-32"></i>
+                    <div class="col">
+                        <span>Generate New API Key</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card  card-hvr user-profile o-hidden mb-4" (click)="resetQuota()">
+            <div class="card-body">
+                <div class="row d-flex align-items-center">
+                    <i class="i-Repeat-2 m-1 text-32"></i>
+                    <div class="col">
+                        <span>Reset Quota</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-hvr-danger user-profile o-hidden mb-4" (click)="cancelSubscription()">
+            <div class="card-body">
+                <div class="row d-flex align-items-center">
+                    <i class="i-Remove-User m-1 text-32"></i>
+                    <div class="col">
+                        <span>Cancel Subscription</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
