@@ -1,36 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LoginComponent } from './pages/login/login.component';
-import { FormsModule } from '@angular/forms';
-import { ModelModule } from './model/model.module';
-import { ServiceModule } from './services/service.module';
-import { HttpClient, HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CoreModule } from './core/core.module';
-import { AuthInterceptor } from './core/auth.interceptor';
-import { AppHttpInterceptor } from './core/http.interceptor';
-import { UsersComponent } from './pages/users/users.component';
+import { SharedModule } from './shared/shared.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './shared/inmemory-db/inmemory-db.service';
+import { HttpClientModule, HttpClient, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppHttpInterceptor } from './shared/services/http.interceptor';
+import { AuthInterceptor } from './shared/services/auth.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent,
-    LoginComponent,
-    UsersComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    CoreModule,
+    SharedModule,
     HttpClientModule,
-    ServiceModule,
-    LayoutModule,
-    ModelModule,
-    FormsModule
+    BrowserAnimationsModule,
+    InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
+    AppRoutingModule,
   ],
   providers: [HttpClient, HttpClientModule, HttpClientJsonpModule, {
     provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true

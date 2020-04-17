@@ -1,0 +1,129 @@
+<div class="breadcrumb">
+    <button class="btn btn-rounded btn-sm btn-outline-danger mr-1" (click)="back()"><i class="i-Arrow-Back"></i>
+        Back</button>
+    <h1>Add New Student</h1>
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+<div class="card user-profile o-hidden mb-2">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-title mb-3">Basic Student Profile Information</div>
+                <form #newStudentForm="ngForm">
+                    <div class="row">
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="firstName">First name</label>
+                            <input type="text" name="first_name" class="form-control" id="firstName"
+                                placeholder="Enter student's first name" [(ngModel)]="student.first_name" required>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="lastName">Last name</label>
+                            <input type="text" name="last_name" class="form-control" id="lastName"
+                                placeholder="Enter student's last name" [(ngModel)]="student.last_name" required>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label for="picker1">Date of Birth</label>
+                            <div class="input-group">
+                                <input type="date" id="dob" class="form-control" placeholder="mm-dd-yyyy" name="dob"
+                                    [(ngModel)]="student.dob" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label for="lastName">Gender</label>
+                            <select class="form-control" name="gender" [(ngModel)]="student.gender" required>
+                                <option [value]="'male'">Male</option>
+                                <option [value]="'female'">Female</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label for="lastName">Marital Status</label>
+                            <select class="form-control" name="marital" [(ngModel)]="student.marital" required>
+                                <option [value]="'single'">Single</option>
+                                <option [value]="'married'">Married</option>
+                                <option [value]="'divorced'">Divorced</option>
+                                <option [value]="'widowed'">Widowed</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="student.email"
+                                required>
+                        </div>
+
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="phone">Phone</label>
+                            <input class="form-control" id="phone" placeholder="Enter phone" name="phone"
+                                [(ngModel)]="student.phone" required>
+                        </div>
+                        <br>
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="credit">Current Address</label>
+                            <input class="form-control" id="c_address" placeholder="Current Address"
+                                name="current_address" [(ngModel)]="student.current_address" required>
+                        </div>
+                        <div class="col-md-6 form-group mb-3">
+                            <label for="credit">Permanent Address</label>
+                            <input class="form-control" id="p_address" placeholder="Permanent Address"
+                                name="permanent_address" [(ngModel)]="student.permanent_address" required>
+                        </div>
+                    </div>
+
+                    <!-- Students Detail -->
+                    <div class="card-title mb-3 mt-4">Student Education Information</div>
+                    <div class="row">
+                        <div class="col-md-12 form-group mb-3">
+                            <label for="firstName">Affiliated School</label>
+                            <select class="form-control" name="school" [(ngModel)]="student.school" required>
+                                <option [value]="'DNA001'">Dai Nippon Academy | DNA001</option>
+                                <option [value]="'SWA002'">Sewa Japanese Language Institue | SWA002</option>
+                                <option [value]="'IGC003'">ICG Japanese Culture Center | IGC003</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label for="lastName">Student's Final Education</label>
+                            <select class="form-control" name="final_education" [(ngModel)]="student.final_education"
+                                required>
+                                <option [value]="'none'"> None</option>
+                                <option [value]="'masters'">Master's degree</option>
+                                <option [value]="'bachlors'">Bachlor's degree</option>
+                                <option [value]="'+2'">+2 Pass</option>
+                                <option [value]="'10'">10 Pass</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label for="nursing_certificate">Nursing Certificate</label>
+                            <select class="form-control" name="nursing_certificate"
+                                [(ngModel)]="student.nursing_certificate" required>
+                                <option [value]="'none'"> None</option>
+                                <option [value]="'bachlors'">Bachlor Nursing</option>
+                                <option [value]="'bsc'">B.Sc Nursing</option>
+                                <option [value]="'pcl'">PCL</option>
+                                <option [value]="'ha'">H.A</option>
+                                <option [value]="'anm'">ANM</option>
+                                <option [value]="'cma'">CMA</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 form-group mb-3">
+                            <label for="picker1">Scholarship</label>
+                            <select class="form-control" name="scholarship" [(ngModel)]="student.scholarship" required>
+                                <option [value]="'scholar'">Scholars</option>
+                                <option [value]="'self'">Self-Paid</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 m-1 center">
+                            <btn-loading btnClass="btn-primary btn-rounded" [loading]="loading" (click)="submit()"
+                                [disabled]="!newStudentForm.form.valid">
+                                Submit
+                            </btn-loading>
+                            <p><small class="center">*Enter all the fields before submitting the form.</small></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

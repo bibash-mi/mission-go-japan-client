@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+.center{
+    text-align: center;
+}
+
+.spacer{
+    margin: 20px
+}
+
+i{
+    cursor: pointer;
+}

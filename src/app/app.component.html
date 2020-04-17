@@ -1,9 +1,1 @@
-<div class="wrapper">
-  <div class="sidebar" *ngIf="show">
-    <app-sidebar></app-sidebar>
-  </div>
-  <div class="main-panel" [ngClass]="show?'main-panel':'main-panel-only'">
-    <app-topnav *ngIf="show"></app-topnav>
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<router-outlet></router-outlet>

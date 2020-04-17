@@ -1,0 +1,18 @@
+<div [ngClass]="{ open: navService.sidebarState.sidenavOpen }" class="sidebar-left rtl-ps-none"
+  [perfectScrollbar]="{ suppressScrollX: true }">
+  <div class="logo">
+    Misson Go Japan
+  </div>
+  <ul class="navigation-left">
+    <li [ngClass]="{ active: item.active }" (click)="onClickChangeActiveFlag(item)" class="nav-item"
+      *ngFor="let item of nav">
+      <div class="nav-item-hold" routerLink="{{ item.state }}" (click)="closeChildNav()" *ngIf="item.type === 'link'">
+        <i [class]="'nav-icon ' + item.icon"></i>
+        <span class="nav-text">{{ item.name }}</span>
+      </div>
+      <div class="triangle"></div>
+    </li>
+  </ul>
+</div>
+
+<div [ngClass]="{ open: navService.sidebarState.childnavOpen }" class="sidebar-overlay" (click)="closeChildNav()"></div>

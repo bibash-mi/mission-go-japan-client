@@ -1,0 +1,64 @@
+<div class="breadcrumb">
+    <h1>Add User</h1>
+    <ul>
+        <li><a href="">Pages</a></li>
+        <li>User Profile</li>
+    </ul>
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+
+<div class="col-md-12">
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="card-title mb-3">Form Inputs Rounded</div>
+            <form [formGroup]="formBasic" (ngSubmit)="submit()">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 form-group mb-3">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control form-control-rounded" id="firstName"
+                            placeholder="Enter your first name">
+                    </div>
+                    <div class="col-md-4 form-group mb-3">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control form-control-rounded" id="lastName"
+                            placeholder="Enter your last name">
+                    </div>
+
+                    <div class="col-md-4 form-group mb-3">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control form-control-rounded" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+
+                    <div class="col-md-4 form-group mb-3">
+                        <label for="phone">Office Phone</label>
+                        <input class="form-control form-control-rounded" id="phone" placeholder="Enter phone">
+                    </div>
+
+                    <div class="col-md-4 form-group mb-3">
+                        <label for="phone">Cell Phone</label>
+                        <input class="form-control form-control-rounded" id="phone" placeholder="Enter phone">
+                    </div>
+
+                    <div class="col-md-4 form-group mb-3">
+                        <label for="phone">Job Title</label>
+                        <input class="form-control form-control-rounded" id="phone" placeholder="Enter phone">
+                    </div>
+
+                    <div class="col-md-4 form-group mb-3">
+                        <label for="picker1">User Type</label>
+                        <select class="form-control form-control-rounded">
+                            <option>Admin</option>
+                            <option>Loan Office</option>
+                            <option>Credit Officer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <btn-loading btnClass="btn-primary btn-lg btn-rounded" [loading]="loading">Submit</btn-loading>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

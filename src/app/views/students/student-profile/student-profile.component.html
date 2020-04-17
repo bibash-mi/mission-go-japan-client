@@ -1,0 +1,110 @@
+<div class="breadcrumb">
+    <h1>Student's Profile</h1>
+    <ul>
+        <li><a href="">Pages</a></li>
+        <li>User Profile</li>
+    </ul>
+</div>
+
+<div class="separator-breadcrumb border-top"></div>
+<div class="card user-profile o-hidden mb-4">
+    <div class="card-body">
+        <div class="row d-flex align-items-center">
+            <i class="i-Lock-User m-1 text-32"></i>
+            <div class="col">
+                <h4>{{student.first_name}} {{student.last_name}} | <small>Student ID : {{student.id}}</small></h4>
+                <small>Enrolled on
+                    {{student.enrollment_date ? helper.formatDate(student.enrollment_date) : 'NOT FOUND!'}}
+                </small>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="mb-3">Basic Information</h5>
+                <div class="row">
+                    <div class="col-4" style="white-space: nowrap; overflow: hidden;">
+                        <p>ID</p>
+                        <p>Name</p>
+                        <p>Email</p>
+                        <p>Date of Birth</p>
+                        <p>Current Address</p>
+                        <p>Permanent Address</p>
+                    </div>
+                    <div class="col-8" style="white-space: nowrap; overflow: hidden;">
+                        <p>: {{student.id}}</p>
+                        <p>: {{student.first_name}} {{student.last_name}}</p>
+                        <p>: {{student.email}}</p>
+                        <p>: {{helper.formatDate(student.dob)}}</p>
+                        <p>: {{student.current_address}}</p>
+                        <p>: {{student.permanent_address}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5 class="mb-3"></h5>
+                <div class="row">
+                    <div class="col-4" style="white-space: nowrap; overflow: hidden;">
+                        <p>Gender</p>
+                        <p>Marital Status</p>
+                        <p>Phone</p>
+                        <p>Scholarship</p>
+                        <p>Status</p>
+                    </div>
+                    <div class="col-8" style="white-space: nowrap; overflow: hidden;">
+                        <p>: {{student.gender}}</p>
+                        <p>: {{student.marital}}</p>
+                        <p>: {{student.phone}}</p>
+                        <p>: {{student.scholarship}}</p>
+                        <p>: {{student.status == 'active' ? '✅' : '❌'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card user-profile o-hidden mb-4">
+    <div class="card-header">
+        <h4>Student Education Information</h4>
+    </div>
+    <div class="card-body center" *ngIf="profile_loading">
+        <div class="spinner-bubble spinner-bubble-secondary m-5"></div>
+    </div>
+    <div class="card-body" *ngIf="!profile_loading">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="mb-3">Basic Education Information</h5>
+                <div class="row">
+                    <div class="col-4" style="white-space: nowrap; overflow: hidden;">
+                        <p>Final Education</p>
+                        <p>Nursing Certificate</p>
+                    </div>
+                    <div class="col-8" style="white-space: nowrap; overflow: hidden;">
+                        <p>{{student.final_education}}</p>
+                        <p>{{student.nursing_certificate}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <br>
+        <!-- <div class="row">
+            <div class="col-md-6">
+                <h5 class="mb-3">Language Information</h5>
+                <div class="row">
+                    <div class="col-4" style="white-space: nowrap; overflow: hidden;">
+                        <p>Final Education</p>
+                        <p>Nursing Certificate</p>
+                    </div>
+                    <div class="col-8" style="white-space: nowrap; overflow: hidden;">
+                        <p>{{student.final_education}}</p>
+                        <p>{{student.nursing_certificate}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div> -->
+    </div>
+</div>
