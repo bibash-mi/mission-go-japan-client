@@ -1,0 +1,66 @@
+<div style="height : 100vh;" class="container-fluid d-flex justify-content-center align-items-center">
+    <div>
+        <div *ngIf="!loading" class="card" style="width: 20rem;">
+            <div class="center">
+
+            </div>
+            <div class="card-body" *ngIf="showLogin">
+                <div class="alert alert-success" *ngIf="resetEmail" role="alert">
+                    <span style="color:#3c763d; font-size: 12px; display: inline-block;">An email has been sent with
+                        instructions
+                        on how to reset your password.</span>
+                </div>
+                <form #loginForm="ngForm">
+                    <div class="input-group mb-3">
+                        <input name="email" type="text" class="form-control" placeholder="E-mail" aria-label="Email"
+                            [(ngModel)]="user.email" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input name="password" type="password" class="form-control" placeholder="Password"
+                            aria-label="Password" [(ngModel)]="user.password" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="center">
+                        <button type="button" class="btn btn-primary full-width" (click)="login()">Login</button>
+                    </div>
+                    <div class="center" *ngIf="errorMessage">
+                        <span id="error">{{errorMessage}}</span>
+                    </div>
+                </form>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <span class="float-right" style="color: #0086B8; font-size: 13px; cursor: pointer;"
+                            (click)="showLogin = false;">
+                            Forgot my password</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" *ngIf="!showLogin">
+                <div class="alert alert-primary" role="alert">
+                    <span style="color:#0086B8; font-size: 12px; display: inline-block;">Enter in the account e-mail
+                        address and
+                        we will send you
+                        instruction on how to
+                        reset your password.</span>
+                </div>
+                <form #loginForm="ngForm">
+                    <div class="input-group mb-3">
+                        <input name="email" type="text" class="form-control" placeholder="Email" aria-label="Email"
+                            [(ngModel)]="user.email" aria-describedby="basic-addon1">
+                    </div>
+
+                    <div class="center">
+                        <button type="button" class="btn btn-primary full-width" (click)="sendResetEmail()">Confirm
+                            Email</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="center marginAround" *ngIf="!showLogin && !loading">
+            <p style="color: #0086B8; cursor: pointer;" (click)="showLogin = true;">Back to Login Page</p>
+        </div>
+        <div *ngIf="loading" style="z-index:0;" class="center marginAround">
+            <i class="fas fa-spinner fa-spin" style="font-size: 75px;"></i>
+        </div>
+    </div>
+</div>
