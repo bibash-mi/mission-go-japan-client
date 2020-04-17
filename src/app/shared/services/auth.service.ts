@@ -17,6 +17,13 @@ export class AuthService {
   constructor(private router: Router, private http: HttpClient, private config: ConfigService) {
     this.checkAuth();
   }
+  public isLoggedIn() {
+    return moment().isBefore(this.getExpiration());
+  }
+
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
 
   checkAuth() {
     return moment().isBefore(this.getExpiration());
@@ -39,15 +46,37 @@ export class AuthService {
   signin(credentials) {
     console.log(credentials);
     this.authenticated = true;
-    return this.http.post(this.config.getAPIRoot() + '/auth/login', { username: credentials.email, password: credentials.password }).pipe(
+    return this.http.post(this.config.getAPIRoot() + '/auth/signin', { email: credentials.email, password: credentials.password }).pipe(
       tap((res) => {
         console.log("Here is response : ", res);
-        // if (res['token']) {
-        //     this.setSession(res['token']);
-        //     return res;
-        // }
+        if (res['token']) {
+          this.setSession(res['token']);
+          return res;
+        }
       })
     );
+  }
+
+  isAdminUser() {
+    let jwt = localStorage.getItem("id_token");
+    if (jwt != null) {
+      let token = jwt.split('.');
+      let user = JSON.parse(atob(token[1]));
+      return user.hasOwnProperty("admin") && user.admin;
+    }
+    return false;
+  }
+
+  getJWT() {
+    return localStorage.getItem("id_token");
+  }
+
+  setSession(jwt) {
+    // const expiresAt = moment().add(authResult.expiresIn,'second');
+    const expiresAt = moment().add(30, 'day');
+
+    localStorage.setItem('id_token', jwt);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
   }
 
   signout() {

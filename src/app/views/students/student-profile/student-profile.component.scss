@@ -1,0 +1,32 @@
+
+  // @media (pointer: fine) {
+  //   .card-hvr:hover {
+  //     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.8);
+  //     -webkit-transform: scale(1.1);
+  //     transform: scale(1.1);
+  //     cursor: pointer;
+  //   }
+  // }
+  // @media (pointer: course) {
+  //   .card-hvr:active {
+  //     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.8);
+  //     -webkit-transform: scale(1.1);
+  //     transform: scale(1.1);
+  //     cursor: pointer;
+  //   }
+  // }
+
+
+  @media (pointer: fine) {
+    .card-hvr:hover {
+      background-color: rgba(33, 207, 152, 0.863) !important;
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    .card-hvr-danger:hover {
+      background-color: rgba(244, 86, 50, 0.836) !important;
+      transition: 0.4s;
+      cursor: pointer;
+    }
+  }

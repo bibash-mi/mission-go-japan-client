@@ -2,32 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { DataLayerService } from 'src/app/shared/services/data-layer.service';
 import { SharedAnimations } from 'src/app/shared/animations/shared-animations';
 import { Router } from '@angular/router';
-import { UsersService } from 'src/app/shared/services/users.service';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
+import { StudentsService } from 'src/app/shared/services/students.service';
 
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'app-students',
+  templateUrl: './students.component.html',
+  styleUrls: ['./students.component.scss'],
   animations: [SharedAnimations]
 })
-export class UsersComponent implements OnInit {
+export class StudentsComponent implements OnInit {
 
   allSelected: boolean;
-  users: any = [];
-  filteredUsers: any = [];
+  students: any = [];
+  filteredStudents: any = [];
 
   searchControl: FormControl = new FormControl();
 
   constructor(
-    private customersService: UsersService,
+    private studentsService: StudentsService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.getUsers();
+    this.getAllStudents();
 
     this.searchControl.valueChanges
       .pipe(debounceTime(200))
@@ -36,10 +36,11 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  getUsers() {
-    this.customersService.getUsers().subscribe((users: any) => {
-      this.filteredUsers = this.users = users.users;
-      console.log("HEr eis customers ", users);
+  getAllStudents() {
+    this.studentsService.getStudents().subscribe((data: any) => {
+      this.filteredStudents = this.students = data.students;
+      console.log(this.filteredStudents);
+      console.log("HEr eis customers ", data);
     })
   }
 
@@ -47,33 +48,31 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['/users/add-user']);
   }
 
-  viewUser(id) {
-    console.log("HEre is id : ", id);
-    this.router.navigate(['/users/profile/' + id]);
+  viewStudent(id) {
+    this.router.navigate(['/students/profile/' + id]);
   }
 
   search(val) {
     if (val) {
       val = val.toLowerCase();
     } else {
-      return this.filteredUsers = [...this.users];
+      return this.filteredStudents = [...this.students];
     }
 
-    const columns = Object.keys(this.users[0]);
+    const columns = Object.keys(this.students[0]);
     if (!columns.length) {
       return;
     }
 
-    const rows = this.users.filter(function (d) {
+    const rows = this.students.filter(function (d) {
       for (let i = 0; i <= columns.length; i++) {
         const column = columns[i];
-        // console.log(d[column]);
         if (d[column] && d[column].toString().toLowerCase().indexOf(val) > -1) {
           return true;
         }
       }
     });
-    this.filteredUsers = rows;
+    this.filteredStudents = rows;
   }
 
 }

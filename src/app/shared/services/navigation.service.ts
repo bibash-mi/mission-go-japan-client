@@ -57,18 +57,18 @@ export class NavigationService {
             icon: 'i-Bar-Chart',
         },
         {
-            name: 'Users',
-            description: 'This is customers page.',
+            name: 'Students',
+            description: 'This is students page.',
             type: 'link',
-            icon: 'i-Computer-Secure',
-            state: '/users/'
+            icon: 'i-Business-ManWoman',
+            state: '/students/'
         },
         {
-            name: 'Signin Page',
-            description: '600+ premium icons',
+            name: 'Schools',
+            description: 'This is Schools page.',
             type: 'link',
-            icon: 'i-Safe-Box1',
-            state: '/users/add-user'
+            icon: 'i-University1',
+            state: '/schools/'
         }
     ];
 
@@ -77,19 +77,4 @@ export class NavigationService {
     menuItems = new BehaviorSubject<IMenuItem[]>(this.defaultMenu);
     // navigation component has subscribed to this Observable
     menuItems$ = this.menuItems.asObservable();
-
-    // You can customize this method to supply different menu for
-    // different user type.
-    // publishNavigationChange(menuType: string) {
-    //   switch (userType) {
-    //     case 'admin':
-    //       this.menuItems.next(this.adminMenu);
-    //       break;
-    //     case 'user':
-    //       this.menuItems.next(this.userMenu);
-    //       break;
-    //     default:
-    //       this.menuItems.next(this.defaultMenu);
-    //   }
-    // }
 }

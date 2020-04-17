@@ -1,30 +1,43 @@
 <div class="">
     <div class="breadcrumb">
-        <h1>Users</h1>
+        <h1>Students</h1>
         <ul>
-            <li><a href="#">Table</a></li>
-            <li>View, Manage, Remove User</li>
+            <li>View, Manage, Remove Students</li>
         </ul>
     </div>
 
     <div class="separator-breadcrumb border-top"></div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="form-group">
-                <input id="search" placeholder="Search by Id, Name, Email or Plan" [formControl]="searchControl"
+                <input id="search" placeholder="Search by Id, Name, Email or School Id" [formControl]="searchControl"
                     class="form-control form-control-rounded" type="text">
             </div>
         </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary float-right" [routerLink]="['/students/add_new_student']">Add
+                Student</button>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12">
             <div class="card  o-hidden">
-                <ngx-datatable style="height: 80vh; box-shadow: none"
+                <ngx-datatable style="height: 60vh; box-shadow: none"
                     class="material ngx-datatable striped fixed-header fixed-row virtualized" [headerHeight]="50"
-                    [footerHeight]="50" [rowHeight]="60" [rows]="filteredUsers" [columnMode]="'force'"
+                    [footerHeight]="50" [rowHeight]="60" [rows]="filteredStudents" [columnMode]="'force'"
                     [scrollbarV]="true">
-                    <ngx-datatable-column name="name">
+                    <ngx-datatable-column>
                         <ng-template ngx-datatable-header-template>
                             Name
+                        </ng-template>
+                        <ng-template ngx-datatable-cell-template let-row="row">
+                            <span>{{row.first_name}} {{row.last_name}}</span>
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="scholarship">
+                        <ng-template ngx-datatable-header-template>
+                            Scholarship
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="email">
@@ -32,9 +45,9 @@
                             Email
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="plan">
+                    <ngx-datatable-column name="school">
                         <ng-template ngx-datatable-header-template>
-                            Plan
+                            School ID
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="id" [maxWidth]="90">
@@ -42,7 +55,7 @@
 
                         </ng-template>
                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                            <i class="i-Eye text-24" (click)="viewUser(value)"></i>
+                            <i class="i-Eye text-24" (click)="viewStudent(value)"></i>
                         </ng-template>
                     </ngx-datatable-column>
                 </ngx-datatable>

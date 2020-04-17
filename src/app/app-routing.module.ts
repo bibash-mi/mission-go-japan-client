@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/auth-layout.component';
-import { AuthGaurd } from './shared/services/auth.gaurd';
+import { AuthGuard } from './shared/services/auth.gaurd';
 import { AdminLayoutSidebarLargeComponent } from './shared/components/layouts/admin-layout-sidebar-large/admin-layout-sidebar-large.component';
 
 const adminRoutes: Routes = [
@@ -10,8 +10,12 @@ const adminRoutes: Routes = [
     loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path: 'users',
-    loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule)
+    path: 'students',
+    loadChildren: () => import('./views/students/students.module').then(m => m.StudentsModule)
+  },
+  {
+    path: 'schools',
+    loadChildren: () => import('./views/schools/schools.module').then(m => m.SchoolsModule)
   },
 ];
 
@@ -19,7 +23,8 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: '', component: AuthLayoutComponent,
@@ -33,7 +38,7 @@ const routes: Routes = [
   {
     path: '',
     component: AdminLayoutSidebarLargeComponent,
-    canActivate: [AuthGaurd],
+    canActivate: [AuthGuard],
     children: adminRoutes
   },
   {

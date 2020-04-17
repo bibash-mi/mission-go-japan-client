@@ -1,0 +1,35 @@
+<div class="breadcrumb">
+    <h1>School</h1>
+    <ul>
+        <li><a href="">List of Japanese Language Schools</a></li>
+    </ul>
+</div>
+<div class="separator-breadcrumb border-top"></div>
+
+<!-- DATA LIST -->
+<div class="row list-horizontal">
+    <!-- SINGLE LIST ITEM -->
+    <div *ngFor="let school of schools | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index"
+        class="col-md-12 list-item" [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}">
+        <div class="card o-hidden mb-4 d-flex flex-row">
+            <div class="flex-grow-1 pl-2 d-flex">
+                <div
+                    class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between align-items-lg-center">
+                    <!-- OTHER DATA -->
+                    <a href="" class="w-30 w-sm-100">
+                        <div class="item-title"><b>{{school.name}}</b></div>
+                        <div class="item-sub-title">{{school.address}}</div>
+                    </a>
+                    <p class="m-0 text-muted text-small w-15 w-sm-100">{{school.id}}</p>
+                </div>
+                <div class="align-self-center pl-3 pb-2 pr-3 item-select">
+                    <i class="i-Eye text-24" (click)="viewSchool(school.id)"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PAGINATION CONTROL -->
+    <div class="col-md-12 mt-3" *ngIf="schools?.length">
+        <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""></pagination-controls>
+    </div>
+</div>
