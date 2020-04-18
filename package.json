@@ -4,7 +4,7 @@
   "license": "https://themeforest.net/licenses/terms/regular",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "node serve.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
