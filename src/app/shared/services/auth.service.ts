@@ -12,7 +12,7 @@ import * as moment from "moment";
 })
 export class AuthService {
   //Only for demo purpose
-  authenticated = true;
+  authenticated = false;
 
   constructor(private router: Router, private http: HttpClient, private config: ConfigService) {
     this.checkAuth();
