@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthLayoutComponent } from './shared/components/layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './shared/services/auth.gaurd';
 import { AdminLayoutSidebarLargeComponent } from './shared/components/layouts/admin-layout-sidebar-large/admin-layout-sidebar-large.component';
+import { OnlineFormComponents } from './views/forms/online-form/online-form.component';
 
 const adminRoutes: Routes = [
   {
@@ -16,7 +17,7 @@ const adminRoutes: Routes = [
   {
     path: 'schools',
     loadChildren: () => import('./views/schools/schools.module').then(m => m.SchoolsModule)
-  },
+  }
 ];
 
 const routes: Routes = [
@@ -34,6 +35,9 @@ const routes: Routes = [
         loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule)
       }
     ]
+  },
+  {
+    path: 'online-application/:id', component: OnlineFormComponents,
   },
   {
     path: '',

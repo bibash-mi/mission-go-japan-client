@@ -1,37 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FormsRoutingModule } from './forms-routing.module';
-import { CustomFormsModule } from 'ngx-custom-validators';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { TagInputModule } from 'ngx-chips';
-
-
-import { BasicFormComponent } from './basic-form/basic-form.component';
-import { TagInputsComponent } from './tag-inputs/tag-inputs.component';
-import { WizardComponent } from './wizard/wizard.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedComponentsModule } from 'src/app/shared/components/shared-components.module';
-import { FormWizardModule } from 'src/app/shared/components/form-wizard/form-wizard.module';
-import { TextMaskModule } from 'angular2-text-mask';
-import { InputMaskComponent } from './input-mask/input-mask.component';
-import { InputGroupsComponent } from './input-groups/input-groups.component';
-import { FormLayoutsComponent } from './form-layouts/form-layouts.component';
+import { SharedPipesModule } from 'src/app/shared/pipes/shared-pipes.module';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { OnlineFormComponents } from './online-form/online-form.component';
+import { ButtonsLoadingComponent } from '../ui-kits/buttons-loading/buttons-loading.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    CustomFormsModule,
+    NgxDatatableModule,
+    NgxPaginationModule,
     SharedComponentsModule,
-    NgbModule,
-    TagInputModule,
-    TextMaskModule,
-    FormWizardModule,
-    FormsRoutingModule
+    SharedPipesModule,
+    // ButtonsLoadingComponent,
+    NgbModule
   ],
-  declarations: [BasicFormComponent, TagInputsComponent, AppImgCropperComponent, WizardComponent, InputMaskComponent, InputGroupsComponent, FormLayoutsComponent]
+  declarations: [OnlineFormComponents],
+  entryComponents: []
 })
 export class AppFormsModule { }

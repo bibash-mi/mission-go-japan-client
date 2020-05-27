@@ -24,4 +24,8 @@ export class StudentsService {
         return this.http.post(this.config.getAPIRoot() + '/student/', data);
     }
 
+    onlineApplication(data: any) {
+        return this.http.post(this.config.getAPIRoot() + '/online-form/', data);
+    }
+
 }

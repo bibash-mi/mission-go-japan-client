@@ -1,0 +1,205 @@
+<div class="container mt-4">
+    <div class="card user-profile o-hidden mb-2">
+        <div class="card-body center" *ngIf="loading">
+            <div class="spinner-bubble spinner-bubble-secondary m-5"></div>
+        </div>
+        <div class="card-body" *ngIf="!loading">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mb-3 center"> {{schoolName(school_id)}}</h2>
+                    <div class="card-title mb-3">Online Class Application</div>
+                    <form #onlineForm="ngForm">
+                        <div class="row">
+                            <div class="col-md-4 form-group mb-3">
+                                <label>First name*</label>
+                                <input type="text" name="first_name" class="form-control" id="firstName"
+                                    placeholder="Enter student's first name" [(ngModel)]="student.first_name" required>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label>Middle name (if any)</label>
+                                <input type="text" name="middle name" class="form-control" id="middleName"
+                                    placeholder="Middle Name" [(ngModel)]="student.middle_name">
+                            </div>
+
+                            <div class="col-md-4 form-group mb-3">
+                                <label>Last name*</label>
+                                <input type="text" name="last_name" class="form-control" id="lastName"
+                                    placeholder="Enter student's last name" [(ngModel)]="student.last_name" required>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label>Date of Birth*</label>
+                                <div class="input-group">
+                                    <input type="date" id="dob" class="form-control" placeholder="mm-dd-yyyy" name="dob"
+                                        [(ngModel)]="student.dob" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label>Gender*</label>
+                                <select class="form-control" name="gender" [(ngModel)]="student.gender" required>
+                                    <option [value]="'male'">Male</option>
+                                    <option [value]="'female'">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label>Marital Status*</label>
+                                <select class="form-control" name="marital" [(ngModel)]="student.marital" required>
+                                    <option [value]="'single'">Single</option>
+                                    <option [value]="'married'">Married</option>
+                                    <option [value]="'divorced'">Divorced</option>
+                                    <option [value]="'widowed'">Widowed</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 form-group mb-3">
+                                <label>Email address*</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter email" [(ngModel)]="student.email"
+                                    required>
+                            </div>
+
+                            <div class="col-md-6 form-group mb-3">
+                                <label>Mobile / Home Phone*</label>
+                                <input class="form-control" id="phone" placeholder="Enter phone" name="phone"
+                                    [(ngModel)]="student.phone" required>
+                            </div>
+                        </div>
+                        <br>
+                        <label>Current Address</label>
+                        <div class="row">
+                            <div class="col-md-4 form-group mb-3">
+                                <label>Municipality / Village Ward*</label>
+                                <input class="form-control" id="Municipality"
+                                    placeholder="Municipality / Village Ward No" name="Municipality"
+                                    [(ngModel)]="student.address" required>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label>District*</label>
+                                <select class="form-control" name="district" [(ngModel)]="student.district" required>
+                                    <option *ngFor="let district of helper.getDistricts()" [value]="district">
+                                        {{district}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group mb-3">
+                                <label>Province No*</label>
+                                <input class="form-control" id="district" placeholder="Province No" name="province"
+                                    [(ngModel)]="student.province" required>
+                            </div>
+                        </div>
+
+                        <!-- Students Detail -->
+                        <div class="card-title mb-3 mt-4">Qualifications</div>
+                        <div class="row">
+                            <div class="col-md-3 form-group mb-3">
+                                <label>Your Academic Level*</label>
+                                <select class="form-control" name="academic" [(ngModel)]="student.academic" required>
+                                    <option [value]="'10'">10 Pass</option>
+                                    <option [value]="'+2'">+2 Pass</option>
+                                    <option [value]="'Bachlors'">Bachlor's degree</option>
+                                    <option [value]="'Masters'">Master's degree</option>
+                                    <option [value]="'PCL'">PCL Nursing</option>
+                                    <option [value]="'ANM'">ANM</option>
+                                    <option [value]="'HA'">HA</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group mb-3">
+                                <label>Japanese Language Skill*</label>
+                                <select class="form-control" name="language" [(ngModel)]="student.language" required>
+                                    <option [value]="'JFT A2'">JFT A2</option>
+                                    <option [value]="'JLPT N4'">JLPT N-4</option>
+                                    <option [value]="'NAT N4'">NAT N-4</option>
+                                    <option [value]="'JTest N4'">J-Test N-4</option>
+                                    <option [value]="'JLPT N5'">JLPT N-5</option>
+                                    <option [value]="'NAT N5'">NAT N-5</option>
+                                    <option [value]="'JTest N5'">J-Test N-5</option>
+                                    <option [value]="'JFT A2'">JFT A2</option>
+                                    <option [value]="'under3'">Under 3 months</option>
+                                    <option [value]="'under6'">Under 6 months</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group mb-3">
+                                <label>CTEVT Certificates (if any)</label>
+                                <select class="form-control" name="ctevt" [(ngModel)]="student.ctevt">
+                                    <option [value]="'BscNursing'">Bachelors in Nursing</option>
+                                    <option [value]="'PCL'">PCL Nurse </option>
+                                    <option [value]="'ANM'">ANM</option>
+                                    <option [value]="'CMA'">CMA</option>
+                                    <option [value]="'HA'">HA</option>
+                                    <option [value]="'SLC'">Under SLC</option>
+                                    <option [value]="'dentist'">Dentist</option>
+                                    <option [value]="'labTechnician'">Lab Technician</option>
+                                    <option [value]="'careGiver'">Care Giver</option>
+                                    <option [value]="'cleaning'">Building cleaning</option>
+                                    <option [value]="'other'">Others</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group mb-3">
+                                <label>Language Test Date (if any)</label>
+                                <div class="input-group">
+                                    <input type="date" id="test" class="form-control" placeholder="mm-dd-yyyy"
+                                        name="test" [(ngModel)]="student.test_date">
+                                </div>
+                                <small>Only applies if you have already scheduled your Language Test Date</small>
+                            </div>
+                            <div class="col-md-3 form-group mb-3">
+                                <label>I want to study:* </label>
+                                <select class="form-control" name="study" [(ngModel)]="student.study" required>
+                                    <option [value]="'N4'">N-4 course</option>
+                                    <option [value]="'N5'">N-5 course </option>
+                                    <option [value]="'JFT'">JFT course</option>
+                                    <option [value]="'nursingSkill'">Nursing care Skill course</option>
+                                    <option [value]="'visa'">Visa waiting Course</option>
+                                    <option [value]="'interview'">Interview preparation course</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group mb-3">
+                                <label>Time Preference:* </label>
+                                <select class="form-control" name="study" [(ngModel)]="student.time" required>
+                                    <option [value]="'morning'">Morning (10 am ~ 12 pm)</option>
+                                    <option [value]="'afternoon'">Afternoon (1 pm ~ 3 pm)</option>
+                                    <option [value]="'evening'">Evening (2 pm ~ 4 pm)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group mb-3">
+                                <label>Scholarship Status*</label>
+                                <select class="form-control" name="scholarship" [(ngModel)]="student.scholarship"
+                                    required>
+                                    <option [value]="'continue'">Scholarship Continue (if you already have an
+                                        scholarship)</option>
+                                    <option [value]="'completed'">Scholarship Completed </option>
+                                    <option [value]="'self'">Self Paid </option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 form-group mb-3">
+                                <label>Payment*</label>
+                                <select class="form-control" name="payment" [(ngModel)]="student.payment" required>
+                                    <option [value]="'self'">Self Pay</option>
+                                    <option [value]="'scholarship'">Still Scholarship (If your scholarship is still
+                                        valid) </option>
+                                    <option [value]="'I want to apply for loan'">I want to apply for Loan </option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 mt-4">
+                                <label class="checkbox checkbox-dark">
+                                    <input name="agree" type="checkbox" [(ngModel)]="student.agree" required>
+                                    <span>All the above information is true and I accept to follow all the rules and
+                                        regulation of the school.</span>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-12 m-1 center">
+
+                                <btn-loading *ngIf="onlineForm.form.valid" btnClass="btn-primary btn-rounded"
+                                    [loading]="loading" (click)="submit()">
+                                    Submit
+                                </btn-loading>
+                                <button type="button" class="btn btn-primary btn-rounded" *ngIf="!onlineForm.form.valid"
+                                    [disabled]="!onlineForm.form.valid">Submit</button>
+                                <p><small class="center">*Enter all the fields before submitting the form.</small></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

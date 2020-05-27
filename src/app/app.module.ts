@@ -10,6 +10,7 @@ import { InMemoryDataService } from './shared/inmemory-db/inmemory-db.service';
 import { HttpClientModule, HttpClient, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppHttpInterceptor } from './shared/services/http.interceptor';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { AppFormsModule } from './views/forms/forms.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AuthInterceptor } from './shared/services/auth.interceptor';
     BrowserAnimationsModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
     AppRoutingModule,
+    AppFormsModule
   ],
   providers: [HttpClient, HttpClientModule, HttpClientJsonpModule, {
     provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true
