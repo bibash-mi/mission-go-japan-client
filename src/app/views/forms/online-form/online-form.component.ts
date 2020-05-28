@@ -41,9 +41,9 @@ export class OnlineFormComponents implements OnInit {
       case 'IGC005': return "IGC- Japanese Language & Culture Center";
       case 'KJL006': return "Kansai Int. Japanese Language Center";
       case 'MJL007': return "Mainichi Japanese Language Center";
-      case 'PJL004': return "Popular Japanese Language Institute";
+      case 'PJL004': return "Poplar Japanese Language Institute";
       case 'SJL008': return "Sansui Japanese Language Institute";
-      case 'SWA002': return "Sewa Jaoanese Language Institute";
+      case 'SWA002': return "Sewa Japanese Language Institute";
       case 'AWL003': return "Active Worldwide Language Institute";
       default:
         return "Mission Go Japan";
@@ -53,7 +53,8 @@ export class OnlineFormComponents implements OnInit {
     this.loading = true;
     this.student.status = "applied";
     this.student.school = this.school_id;
-    this.student.enrollment_date = moment().format('yyyy-mm-dd');
+    this.student.enrollment_date = moment().format();
+
     this.studentsService.onlineApplication(this.student).subscribe((data: any) => {
       this.toastr.success("Your application submission successfuly. Thank you for applying. Someone will reach out to you soon regarding your application.", "SUCCESS", { timeOut: 9000, positionClass: "toast-bottom-center" })
       this.student = {};
