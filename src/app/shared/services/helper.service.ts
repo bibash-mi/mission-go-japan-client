@@ -21,6 +21,10 @@ export class HelperService {
         return moment(date).format('MMM Do YYYY, h:mm a');
     }
 
+    formatLeadingUpperCase(value: String) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+
     formatDate(date) {
         return moment(date).format('MMM Do YYYY');
     }

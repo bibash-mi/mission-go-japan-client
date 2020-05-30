@@ -15,7 +15,8 @@
             <i class="i-Administrator text-32" id="userDropdown" ngbDropdownToggle></i>
             <div ngbDropdownMenu aria-labelledby="userDropdown" class="header-account-dropdown">
                 <div class="dropdown-header">
-                    <i class="i-Lock-User mr-1"></i> Admin User
+                    <i class="i-Lock-User mr-1"></i> {{helper.formatLeadingUpperCase(user.first_name)}}
+                    {{helper.formatLeadingUpperCase(user.last_name)}}
                 </div>
                 <button class="dropdown-item" (click)="signout()">Sign out</button>
             </div>

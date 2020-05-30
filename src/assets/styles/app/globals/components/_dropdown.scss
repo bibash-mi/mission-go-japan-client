@@ -4,6 +4,7 @@
         padding-right: 28px;
     }
     &::after {
+        display: none;
         position: absolute;
         top: calc(50% - 2px);
         right: 10px !important;
