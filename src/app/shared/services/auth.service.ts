@@ -12,25 +12,27 @@ import * as moment from "moment";
 })
 export class AuthService {
   //Only for demo purpose
-  authenticated = false;
+  // authenticated = false;
+  authenticated: boolean;
 
   constructor(private router: Router, private http: HttpClient, private config: ConfigService) {
-    this.checkAuth();
+    this.isLoggedIn();
   }
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration());
   }
 
-  isLoggedOut() {
+  public isLoggedOut() {
     return !this.isLoggedIn();
   }
 
-  checkAuth() {
-    return moment().isBefore(this.getExpiration());
-  }
-
   getuser() {
-    return of({});
+    let jwt = localStorage.getItem("id_token");
+    if (jwt != null) {
+      let token = jwt.split('.');
+      let user = JSON.parse(atob(token[1]));
+      return user.user;
+    }
   }
 
   getExpiration() {
@@ -44,11 +46,8 @@ export class AuthService {
   }
 
   signin(credentials) {
-    console.log(credentials);
-    this.authenticated = true;
     return this.http.post(this.config.getAPIRoot() + '/auth/signin', { email: credentials.email, password: credentials.password }).pipe(
       tap((res) => {
-        console.log("Here is response : ", res);
         if (res['token']) {
           this.setSession(res['token']);
           return res;
@@ -58,12 +57,8 @@ export class AuthService {
   }
 
   isAdminUser() {
-    let jwt = localStorage.getItem("id_token");
-    if (jwt != null) {
-      let token = jwt.split('.');
-      let user = JSON.parse(atob(token[1]));
-      return user.hasOwnProperty("admin") && user.admin;
-    }
+    var user = this.getuser();
+    if (user.hasOwnProperty("type") && user.type == "admin") return true;
     return false;
   }
 
@@ -80,7 +75,6 @@ export class AuthService {
   }
 
   signout() {
-    this.authenticated = false;
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     localStorage.removeItem("account");

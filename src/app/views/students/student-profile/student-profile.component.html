@@ -29,15 +29,13 @@
                         <p>Email</p>
                         <p>Date of Birth</p>
                         <p>Current Address</p>
-                        <p>Permanent Address</p>
                     </div>
                     <div class="col-8" style="white-space: nowrap; overflow: hidden;">
                         <p>: {{student.id}}</p>
-                        <p>: {{student.first_name}} {{student.last_name}}</p>
+                        <p>: {{student.first_name}} {{student.middle_name}} {{student.last_name}}</p>
                         <p>: {{student.email}}</p>
                         <p>: {{helper.formatDate(student.dob)}}</p>
-                        <p>: {{student.current_address}}</p>
-                        <p>: {{student.permanent_address}}</p>
+                        <p>: {{student.address}} {{student.district}} District, Province # {{student.province}}</p>
                     </div>
                 </div>
             </div>
@@ -56,7 +54,8 @@
                         <p>: {{student.marital}}</p>
                         <p>: {{student.phone}}</p>
                         <p>: {{student.scholarship}}</p>
-                        <p>: {{student.status == 'active' ? '✅' : '❌'}}</p>
+                        <p>: {{student.status == 'active' ? '✅' : student.status == 'applied' ? '📄 Application Submitted' : '❌'}}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -71,21 +70,37 @@
         <div class="spinner-bubble spinner-bubble-secondary m-5"></div>
     </div>
     <div class="card-body" *ngIf="!profile_loading">
+        <h5 class="mb-3">Basic Education Information</h5>
         <div class="row">
             <div class="col-md-6">
-                <h5 class="mb-3">Basic Education Information</h5>
                 <div class="row">
                     <div class="col-4" style="white-space: nowrap; overflow: hidden;">
-                        <p>Final Education</p>
-                        <p>Nursing Certificate</p>
+                        <p>Academic</p>
+                        <p>CTEVT Certificate</p>
+                        <br>
+                        <p>Payment</p>
+                        <p>Language Test Date</p>
                     </div>
                     <div class="col-8" style="white-space: nowrap; overflow: hidden;">
-                        <p>{{student.final_education}}</p>
-                        <p>{{student.nursing_certificate}}</p>
+                        <p>: {{student.academic}}</p>
+                        <p>: {{student.ctevt}}</p>
+                        <br>
+                        <p>: {{student.payment}}</p>
+                        <p>: {{student.test_date ? student.test_date : 'X'}}</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
+                <div class="row">
+                    <div class="col-4" style="white-space: nowrap; overflow: hidden;">
+                        <p>I want to study :</p>
+                        <p>Class Time</p>
+                    </div>
+                    <div class="col-8" style="white-space: nowrap; overflow: hidden;">
+                        <p>: {{student.study}}</p>
+                        <p>: {{student.time}}</p>
+                    </div>
+                </div>
             </div>
         </div>
         <br>

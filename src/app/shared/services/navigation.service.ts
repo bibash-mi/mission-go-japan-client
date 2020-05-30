@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from './auth.service';
 
 export interface IMenuItem {
     id?: string;
@@ -46,7 +47,9 @@ export class NavigationService {
     };
     selectedItem: IMenuItem;
 
-    constructor() {
+    constructor(
+        private auth: AuthService
+    ) {
     }
 
     defaultMenu: IMenuItem[] = [
@@ -72,9 +75,41 @@ export class NavigationService {
         }
     ];
 
+    schoolMenu: IMenuItem[] = [
+        {
+            name: 'Dashboard',
+            description: 'This is home of the app.',
+            type: 'link',
+            icon: 'i-Bar-Chart',
+        },
+        {
+            name: 'Students',
+            description: 'This is students page.',
+            type: 'link',
+            icon: 'i-Business-ManWoman',
+            state: '/students/'
+        },
+    ];
 
     // sets iconMenu as default;
-    menuItems = new BehaviorSubject<IMenuItem[]>(this.defaultMenu);
+    menuItems = new BehaviorSubject<IMenuItem[]>(this.auth.isAdminUser() ? this.defaultMenu : this.schoolMenu);
     // navigation component has subscribed to this Observable
     menuItems$ = this.menuItems.asObservable();
+
+    // You can customize this method to supply different menu for
+    // different user type.
+    // publishNavigationChange(menuType: string) {
+    //     if(this.auth.isAdminUser)
+    //   switch (this.auth.isAdminUser) {
+    //     case 'admin':
+    //       this.menuItems.next(this.adminMenu);
+    //       break;
+    //     case 'user':
+    //       this.menuItems.next(this.userMenu);
+    //       break;
+    //     default:
+    //       this.menuItems.next(this.defaultMenu);
+    //   }
+    // }
+
 }
