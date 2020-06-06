@@ -7,7 +7,7 @@
 </div>
 
 <div class="separator-breadcrumb border-top"></div>
-<div class="card user-profile o-hidden mb-4">
+<div class="card user-profile o-hidden mb-4" *ngIf="student.id">
     <div class="card-body">
         <div class="row d-flex align-items-center">
             <i class="i-Lock-User m-1 text-32"></i>
@@ -32,7 +32,9 @@
                     </div>
                     <div class="col-8" style="white-space: nowrap; overflow: hidden;">
                         <p>: {{student.id}}</p>
-                        <p>: {{student.first_name}} {{student.middle_name}} {{student.last_name}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.first_name)}}
+                            {{helper.formatLeadingUpperCase(student.middle_name)}}
+                            {{helper.formatLeadingUpperCase(student.last_name)}}</p>
                         <p>: {{student.email}}</p>
                         <p>: {{helper.formatDate(student.dob)}}</p>
                         <p>: {{student.address}} {{student.district}} District, Province # {{student.province}}</p>
@@ -50,10 +52,10 @@
                         <p>Status</p>
                     </div>
                     <div class="col-8" style="white-space: nowrap; overflow: hidden;">
-                        <p>: {{student.gender}}</p>
-                        <p>: {{student.marital}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.gender)}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.marital)}}</p>
                         <p>: {{student.phone}}</p>
-                        <p>: {{student.scholarship}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.scholarship)}}</p>
                         <p>: {{student.status == 'active' ? '✅' : student.status == 'applied' ? '📄 Application Submitted' : '❌'}}
                         </p>
                     </div>
@@ -82,10 +84,10 @@
                         <p>Language Test Date</p>
                     </div>
                     <div class="col-8" style="white-space: nowrap; overflow: hidden;">
-                        <p>: {{student.academic}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.academic)}}</p>
                         <p>: {{student.ctevt}}</p>
                         <br>
-                        <p>: {{student.payment}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.payment)}}</p>
                         <p>: {{student.test_date ? student.test_date : 'X'}}</p>
                     </div>
                 </div>
@@ -97,8 +99,8 @@
                         <p>Class Time</p>
                     </div>
                     <div class="col-8" style="white-space: nowrap; overflow: hidden;">
-                        <p>: {{student.study}}</p>
-                        <p>: {{student.time}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.class)}}</p>
+                        <p>: {{helper.formatLeadingUpperCase(student.time)}}</p>
                     </div>
                 </div>
             </div>
