@@ -12,8 +12,10 @@ export class StudentsService {
 
     constructor(private router: Router, private http: HttpClient, private config: ConfigService) { }
 
-    getStudents() {
-        return this.http.get(this.config.getAPIRoot() + '/students');
+    getStudents(filter) {
+        return this.http.get(this.config.getAPIRoot() + `/students?${filter ? 'filter=' + filter : ''}`);
+        // return this.http.get(this.config.getAPIRoot() + `/students?${filter ? 'active=false' : ''}&${filter.unpaid ? 'paid=false' : ''}`);
+        // return this.http.get(this.config.getAPIRoot() + '/students');
     }
 
     getStudentDetail(id: string) {
@@ -22,6 +24,10 @@ export class StudentsService {
 
     addStudent(data: any) {
         return this.http.post(this.config.getAPIRoot() + '/student/', data);
+    }
+
+    removeStudent(id: number) {
+        return this.http.delete(this.config.getAPIRoot() + '/student/' + id);
     }
 
     onlineApplication(data: any) {

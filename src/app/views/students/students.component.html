@@ -9,20 +9,48 @@
     <div class="separator-breadcrumb border-top"></div>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-5">
             <div class="form-group">
                 <input id="search" placeholder="Search by Id, Name, Email or School Id" [formControl]="searchControl"
                     class="form-control form-control-rounded" type="text">
             </div>
         </div>
-        <!-- <div class="col-md-6">
-            <button class="btn btn-primary float-right" [routerLink]="['/students/add_new_student']">Add
-                Student</button>
-        </div> -->
+        <div class="col-md-7 d-flex align-items-center justify-content-between">
+            <div class="form-group row">
+                <label>Filter by Payments: </label>
+                <label class="radio radio-primary ml-2">
+                    <input type="radio" name="radio" [value]="'scholarship'" [(ngModel)]="filter"
+                        (ngModelChange)="applyFilter()">
+                    <span>Scholarship</span>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="radio radio-primary ml-3">
+                    <input type="radio" name="radio" [value]="'self'" [(ngModel)]="filter"
+                        (ngModelChange)="applyFilter()">
+                    <span>Self</span>
+                    <span class="checkmark"></span>
+                </label>
+                <label class="radio radio-primary ml-3">
+                    <input type="radio" name="radio" [value]="'loan'" [(ngModel)]="filter"
+                        (ngModelChange)="applyFilter()">
+                    <span>Loan</span>
+                    <span class="checkmark"></span>
+                </label>
+
+            </div>
+            <!-- <button class="btn btn-primary float-right" [routerLink]="['/students/add_new_student']">X Clear Filter</button> -->
+            <button *ngIf="filter" class="btn btn-danger btn-rounded btn-sm float-right" (click)="clearFilter()">X Clear
+                Filter</button>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="card  o-hidden">
+            <div class="card" *ngIf="loading">
+                <div class="card-body center">
+                    <div class="spinner-bubble spinner-bubble-secondary m-5"></div>
+                </div>
+            </div>
+            <div class="card  o-hidden" *ngIf="!loading">
                 <ngx-datatable style="height: 60vh; box-shadow: none"
                     class="material ngx-datatable striped fixed-header fixed-row virtualized" [headerHeight]="50"
                     [footerHeight]="50" [rowHeight]="60" [rows]="filteredStudents" [columnMode]="'force'"
@@ -35,14 +63,14 @@
                             <span>{{row.first_name}} {{row.last_name}}</span>
                         </ng-template>
                     </ngx-datatable-column>
-                    <ngx-datatable-column name="scholarship">
-                        <ng-template ngx-datatable-header-template>
-                            Scholarship
-                        </ng-template>
-                    </ngx-datatable-column>
                     <ngx-datatable-column name="email">
                         <ng-template ngx-datatable-header-template>
                             Email
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="class">
+                        <ng-template ngx-datatable-header-template>
+                            Class
                         </ng-template>
                     </ngx-datatable-column>
                     <ngx-datatable-column name="school">
@@ -55,7 +83,10 @@
 
                         </ng-template>
                         <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-                            <i class="i-Eye text-24" (click)="viewStudent(value)"></i>
+                            <div class="d-flex align-items-center">
+                                <i class="i-Eye text-24" (click)="viewStudent(value)"></i>
+                                <i class="i-Close-Window text-20 ml-3" (click)="deleteStudent($event,value)"></i>
+                            </div>
                         </ng-template>
                     </ngx-datatable-column>
                 </ngx-datatable>

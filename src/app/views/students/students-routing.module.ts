@@ -4,6 +4,7 @@ import { StudentsComponent } from './students.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { AuthGuard } from '../../shared/services/auth.gaurd';
+import { EditStudentComponent } from './edit-student/edit-students.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: StudentProfileComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'update_student/:id',
+    component: EditStudentComponent,
     canActivate: [AuthGuard]
   },
   {

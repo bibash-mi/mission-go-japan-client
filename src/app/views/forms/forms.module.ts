@@ -8,22 +8,20 @@ import { SharedComponentsModule } from 'src/app/shared/components/shared-compone
 import { SharedPipesModule } from 'src/app/shared/pipes/shared-pipes.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { OnlineFormComponents } from './online-form/online-form.component';
-import { ButtonsLoadingComponent } from '../ui-kits/buttons-loading/buttons-loading.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxDatatableModule,
-    NgxPaginationModule,
-    SharedComponentsModule,
-    SharedPipesModule,
-    // ButtonsLoadingComponent,
-    NgbModule
-  ],
-  declarations: [OnlineFormComponents],
-  entryComponents: []
+    imports: [
+        CommonModule,
+        NgbModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxDatatableModule,
+        NgxPaginationModule,
+        SharedComponentsModule,
+        SharedPipesModule,
+        NgbModule
+    ],
+    declarations: [OnlineFormComponents],
+    entryComponents: []
 })
 export class AppFormsModule { }
