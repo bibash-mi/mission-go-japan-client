@@ -18,7 +18,7 @@ import { Utils } from '../../../../utils';
 export class SidebarLargeComponent implements OnInit {
   selectedItem: IMenuItem;
   nav: IMenuItem[];
-  @ViewChildren(PerfectScrollbarDirective) psContainers:QueryList<PerfectScrollbarDirective>;
+  @ViewChildren(PerfectScrollbarDirective) psContainers: QueryList<PerfectScrollbarDirective>;
   psContainerSecSidebar: PerfectScrollbarDirective;
 
   constructor(public router: Router, public navService: NavigationService) {
@@ -51,7 +51,7 @@ export class SidebarLargeComponent implements OnInit {
     this.setActiveMainItem(item);
 
     // Scroll to top secondary sidebar
-    setTimeout(() => {            
+    setTimeout(() => {
       this.psContainerSecSidebar.update();
       this.psContainerSecSidebar.scrollToTop(0, 400);
     });
@@ -64,7 +64,9 @@ export class SidebarLargeComponent implements OnInit {
   onClickChangeActiveFlag(item) {
     this.setActiveMainItem(item);
   }
+
   setActiveMainItem(item) {
+    console.log("HEre is item", item);
     this.nav.forEach(i => {
       i.active = false;
     });

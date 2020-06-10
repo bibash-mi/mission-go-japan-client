@@ -22,7 +22,8 @@ export class StudentProfileComponent implements OnInit {
     private studentsService: StudentsService,
     public helper: HelperService,
     private activeRoute: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +33,10 @@ export class StudentProfileComponent implements OnInit {
         this.getStudentData(this.student_id);
       }
     });
+  }
+
+  editStudent() {
+    this.router.navigate(['/students/update_student/' + this.student.id]);
   }
 
   getStudentData(id) {

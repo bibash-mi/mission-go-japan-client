@@ -11,22 +11,23 @@ import { StudentsRoutingModule } from './students-routing.module';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { StudentsComponent } from './students.component';
 import { AddStudentComponent } from './add-student/add-student.component';
+import { EditStudentComponent } from './edit-student/edit-students.component';
+import { DeleteStudentModal } from './delete-student/delete-student.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgbModule,
-    StudentsRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxDatatableModule,
-    NgxPaginationModule,
-    SharedComponentsModule,
-    SharedPipesModule,
-    // ButtonsLoadingComponent,
-    NgbModule
-  ],
-  declarations: [StudentProfileComponent, StudentsComponent, AddStudentComponent],
-  entryComponents: []
+    imports: [
+        CommonModule,
+        NgbModule,
+        StudentsRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxDatatableModule,
+        NgxPaginationModule,
+        SharedComponentsModule,
+        SharedPipesModule,
+        NgbModule
+    ],
+    declarations: [StudentProfileComponent, StudentsComponent, AddStudentComponent, EditStudentComponent, DeleteStudentModal],
+    entryComponents: [DeleteStudentModal]
 })
 export class StudentsModule { }

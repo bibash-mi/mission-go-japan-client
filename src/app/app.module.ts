@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './shared/inmemory-db/inmemory-db.service';
 import { HttpClientModule, HttpClient, HttpClientJsonpModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppHttpInterceptor } from './shared/services/http.interceptor';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
@@ -21,7 +20,7 @@ import { AppFormsModule } from './views/forms/forms.module';
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
     AppRoutingModule,
     AppFormsModule
   ],

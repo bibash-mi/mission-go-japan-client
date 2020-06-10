@@ -52,7 +52,9 @@ export class HeaderSidebarLargeComponent implements OnInit {
     }
   }
 
+  // changePassword(){
 
+  // }
 
   signout() {
     this.auth.signout();
