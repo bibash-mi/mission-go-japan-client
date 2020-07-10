@@ -59,8 +59,8 @@
 
                             <div class="col-md-6 form-group mb-3">
                                 <label>Mobile / Home Phone*</label>
-                                <input class="form-control" id="phone" placeholder="Enter phone" name="phone"
-                                    [(ngModel)]="student.phone" required>
+                                <input class="form-control" type="number" id="phone" placeholder="Enter phone"
+                                    name="phone" [(ngModel)]="student.phone" required>
                             </div>
                         </div>
                         <br>
@@ -81,8 +81,8 @@
                             </div>
                             <div class="col-md-4 form-group mb-3">
                                 <label>Province No*</label>
-                                <input class="form-control" id="district" placeholder="Province No" name="province"
-                                    [(ngModel)]="student.province" required>
+                                <input class="form-control" type="number" id="district" placeholder="Province No"
+                                    name="province" [(ngModel)]="student.province" required>
                             </div>
                         </div>
 
@@ -143,7 +143,7 @@
                             </div>
                             <div class="col-md-3 form-group mb-3">
                                 <label>I want to study:* </label>
-                                <select class="form-control" name="study" [(ngModel)]="student.study" required>
+                                <select class="form-control" name="class" [(ngModel)]="student.class" required>
                                     <option [value]="'N4'">N-4 course</option>
                                     <option [value]="'N5'">N-5 course </option>
                                     <option [value]="'JFT'">JFT course</option>
@@ -154,7 +154,7 @@
                             </div>
                             <div class="col-md-3 form-group mb-3">
                                 <label>Time Preference:* </label>
-                                <select class="form-control" name="study" [(ngModel)]="student.time" required>
+                                <select class="form-control" name="time" [(ngModel)]="student.time" required>
                                     <option [value]="'morning'">Morning (10 am ~ 12 pm)</option>
                                     <option [value]="'afternoon'">Afternoon (1 pm ~ 3 pm)</option>
                                     <option [value]="'evening'">Evening (2 pm ~ 4 pm)</option>

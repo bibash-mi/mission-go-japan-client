@@ -14,7 +14,6 @@ export class StudentsService {
 
     getStudents(filter) {
         return this.http.get(this.config.getAPIRoot() + `/students?${filter ? 'filter=' + filter : ''}`);
-        // return this.http.get(this.config.getAPIRoot() + `/students?${filter ? 'active=false' : ''}&${filter.unpaid ? 'paid=false' : ''}`);
         // return this.http.get(this.config.getAPIRoot() + '/students');
     }
 
@@ -26,7 +25,11 @@ export class StudentsService {
         return this.http.post(this.config.getAPIRoot() + '/student/', data);
     }
 
-    removeStudent(id: number) {
+    updateStudent(data: any) {
+        return this.http.put(this.config.getAPIRoot() + '/student/', data);
+    }
+
+    removeStudent(id: any) {
         return this.http.delete(this.config.getAPIRoot() + '/student/' + id);
     }
 
