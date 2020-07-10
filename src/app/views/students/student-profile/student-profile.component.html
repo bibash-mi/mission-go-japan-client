@@ -12,15 +12,16 @@
         <div class="row d-flex align-items-center">
             <i class="i-Lock-User m-1 text-32"></i>
             <div class="col">
-                <h4>{{student.first_name}} {{student.last_name}} | <small>Student ID : {{student.id}}</small></h4>
+                <h4>{{student.first_name}} {{student.middle_name}} {{student.last_name}} | <small>Student ID :
+                        {{student.id}}</small></h4>
                 <small>Enrolled on
                     {{student.enrollment_date ? helper.formatDate(student.enrollment_date) : 'NOT FOUND!'}}
                 </small>
             </div>
-            <!-- <div class="col" style="text-align: right;">
+            <div class="col" style="text-align: right;">
                 <button class="btn btn-primary btn-rounded mr-1" (click)="editStudent()">Edit</button>
-                <button class="btn btn-danger btn-rounded">Delete</button>
-            </div> -->
+                <button class="btn btn-danger btn-rounded" (click)="deleteStudent()">Delete</button>
+            </div>
         </div>
         <br>
         <div class="row">
