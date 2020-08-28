@@ -10,25 +10,27 @@ import { HttpClientModule, HttpClient, HttpClientJsonpModule, HTTP_INTERCEPTORS 
 import { AppHttpInterceptor } from './shared/services/http.interceptor';
 import { AuthInterceptor } from './shared/services/auth.interceptor';
 import { AppFormsModule } from './views/forms/forms.module';
+import { ModalModule } from './views/modals/modal.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    SharedModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    // InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
-    AppRoutingModule,
-    AppFormsModule
-  ],
-  providers: [HttpClient, HttpClientModule, HttpClientJsonpModule, {
-    provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true
-  }, {
-      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,
-    }],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        SharedModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        ModalModule,
+        // InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
+        AppRoutingModule,
+        AppFormsModule
+    ],
+    providers: [HttpClient, HttpClientModule, HttpClientJsonpModule, {
+        provide: HTTP_INTERCEPTORS, useClass: AppHttpInterceptor, multi: true
+    }, {
+            provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true,
+        }],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
