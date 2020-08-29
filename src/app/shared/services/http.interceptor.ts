@@ -22,6 +22,8 @@ export class AppHttpInterceptor implements HttpInterceptor {
                 error => {
                     if (error instanceof HttpErrorResponse && error.status == 401) {
                         this.router.navigate(['/auth/signin']);
+                    } else if (error instanceof HttpErrorResponse && error.status == 403) {
+                        this.router.navigate(['/dashboard']);
                     }
                 }
             ));

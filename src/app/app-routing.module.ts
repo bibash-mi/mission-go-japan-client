@@ -6,53 +6,57 @@ import { AdminLayoutSidebarLargeComponent } from './shared/components/layouts/ad
 import { OnlineFormComponents } from './views/forms/online-form/online-form.component';
 
 const adminRoutes: Routes = [
-  {
-    path: 'dashboard',
-    loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
-  },
-  {
-    path: 'students',
-    loadChildren: () => import('./views/students/students.module').then(m => m.StudentsModule)
-  },
-  {
-    path: 'schools',
-    loadChildren: () => import('./views/schools/schools.module').then(m => m.SchoolsModule)
-  }
+    {
+        path: 'dashboard',
+        loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
+    },
+    {
+        path: 'students',
+        loadChildren: () => import('./views/students/students.module').then(m => m.StudentsModule)
+    },
+    {
+        path: 'schools',
+        loadChildren: () => import('./views/schools/schools.module').then(m => m.SchoolsModule)
+    },
+    {
+        path: 'company',
+        loadChildren: () => import('./views/company/company.module').then(m => m.CompanyModule)
+    }
 ];
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'dashboard',
-    pathMatch: 'full',
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '', component: AuthLayoutComponent,
-    children: [
-      {
-        path: 'auth',
-        loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule)
-      }
-    ]
-  },
-  {
-    path: 'online-application/:id', component: OnlineFormComponents,
-  },
-  {
-    path: '',
-    component: AdminLayoutSidebarLargeComponent,
-    canActivate: [AuthGuard],
-    children: adminRoutes
-  },
-  {
-    path: '**',
-    redirectTo: 'others/404'
-  }
+    {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
+    },
+    {
+        path: '', component: AuthLayoutComponent,
+        children: [
+            {
+                path: 'auth',
+                loadChildren: () => import('./views/auth/auth.module').then(m => m.AuthModule)
+            }
+        ]
+    },
+    {
+        path: 'online-application/:id', component: OnlineFormComponents,
+    },
+    {
+        path: '',
+        component: AdminLayoutSidebarLargeComponent,
+        canActivate: [AuthGuard],
+        children: adminRoutes
+    },
+    {
+        path: '**',
+        redirectTo: 'others/404'
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

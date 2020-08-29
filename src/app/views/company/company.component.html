@@ -1,0 +1,48 @@
+<div class="breadcrumb">
+    <h1>Companies</h1>
+    <ul>
+        <li><a href="">List of Japanese Comapnies</a></li>
+    </ul>
+    <div class="float-right">
+        <button class="btn btn-success btn-rounded btn-sm" (click)="addCompany()">Add Company</button>
+    </div>
+</div>
+<div class="separator-breadcrumb border-top"></div>
+
+<!-- DATA LIST -->
+<div class="card-body center" *ngIf="loading">
+    <div class="spinner-bubble spinner-bubble-secondary m-5"></div>
+</div>
+<div class="row list-horizontal" *ngIf="!loading">
+    <!-- SINGLE LIST ITEM -->
+    <div *ngFor="let company of companies | paginate: { itemsPerPage: pageSize, currentPage: page }; let i = index"
+        class="col-md-12 list-item" [@animate]="{value:'*',params:{delay: (i*100)+'ms', y:'50px'}}">
+        <div class="card mb-4 d-flex flex-row">
+            <!-- o-hidden  -->
+            <div class="flex-grow-1 pl-2 d-flex">
+                <div
+                    class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between align-items-lg-center">
+                    <!-- OTHER DATA -->
+                    <a href="" class="w-30 w-sm-100">
+                        <div class="item-title"><b>{{company.name}}</b></div>
+                        <div class="item-sub-title">{{company.address}} , {{company.city}}</div>
+                    </a>
+                    <p class="m-0 text-muted text-small w-15 w-sm-100">{{company.id}}</p>
+                </div>
+                <div class="align-self-center pl-3 pb-2 pr-3 item-select">
+                    <div ngbDropdown [placement]="'bottom-right'" class="user col align-self-end">
+                        <i class="i-Gear text-24" id="companyDropdown" ngbDropdownToggle></i>
+                        <div ngbDropdownMenu aria-labelledby="companyDropdown" class="incard-dropdown">
+                            <button class="dropdown-item" (click)="view(company.id)">View</button>
+                            <button class="dropdown-item danger" (click)="delete(company.id)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- PAGINATION CONTROL -->
+    <div class="col-md-12 mt-3" *ngIf="companies?.length">
+        <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""></pagination-controls>
+    </div>
+</div>

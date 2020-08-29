@@ -60,6 +60,13 @@ export class NavigationService {
             icon: 'i-Bar-Chart',
         },
         {
+            name: 'Company',
+            description: 'This is Company page.',
+            type: 'link',
+            icon: 'i-Building',
+            state: '/company/'
+        },
+        {
             name: 'Students',
             description: 'This is students page.',
             type: 'link',
@@ -72,7 +79,14 @@ export class NavigationService {
             type: 'link',
             icon: 'i-University1',
             state: '/schools/'
-        }
+        },
+        {
+            name: 'Interviews',
+            description: 'This is Interview page.',
+            type: 'link',
+            icon: 'i-Conference',
+            state: '/interviews/'
+        },
     ];
 
     schoolMenu: IMenuItem[] = [
